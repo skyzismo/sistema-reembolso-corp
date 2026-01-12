@@ -1,4 +1,7 @@
 using ReembolsoCorporativo.Api.Application.Services;
+using Microsoft.EntityFrameworkCore;
+using ReembolsoCorporativo.Api.Infrastructure.Persistence;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDespesaService, DespesaService>();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    )
+);
+
 
 var app = builder.Build();
 
