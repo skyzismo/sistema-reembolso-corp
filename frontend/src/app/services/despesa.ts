@@ -1,20 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Despesa } from '../models/despesa.model';
 
-export interface Despesa {
-  id?: string;
-  tipo: number;
-  valor: number;
-  data: string;
-  status?: number;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class DespesaService {
-
   private apiUrl = 'http://localhost:5124/api/despesas';
 
   constructor(private http: HttpClient) {}

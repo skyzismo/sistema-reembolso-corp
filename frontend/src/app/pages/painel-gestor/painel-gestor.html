@@ -1,0 +1,25 @@
+<h2>Painel do Gestor</h2>
+
+<table border="1" width="100%">
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Valor</th>
+      <th>Data</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody *ngIf="despesas$ | async as despesas">
+    <tr *ngFor="let d of despesas">
+      <td>{{ tipoLabel(d.tipo) }}</td>
+      <td>R$ {{ d.valor }}</td>
+      <td>{{ d.data }}</td>
+      <td>{{ statusLabel(d.status!) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="(despesas$ | async)?.length === 0">
+  Nenhuma despesa cadastrada.
+</p>
