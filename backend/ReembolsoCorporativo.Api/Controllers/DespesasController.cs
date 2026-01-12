@@ -36,4 +36,13 @@ public class DespesasController : ControllerBase
             return Conflict(ex.Message);
         }
     }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<DespesaResponseDto>), StatusCodes.Status200OK)]
+    public IActionResult Listar()
+    {
+        var despesas = _service.Listar();
+        return Ok(despesas);
+    }
+
 }
