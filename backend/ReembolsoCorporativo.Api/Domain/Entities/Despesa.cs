@@ -8,6 +8,7 @@ public class Despesa
     public TipoDespesa Tipo { get; private set; }
     public decimal Valor { get; private set; }
     public DateTime Data { get; private set; }
+    public DateTime DataCriacao { get; private set; }
     public StatusDespesa Status { get; private set; }
 
     protected Despesa() { }
@@ -18,6 +19,7 @@ public class Despesa
         Tipo = tipo;
         Valor = valor;
         Data = data;
+        DataCriacao = DateTime.Now;
 
         DefinirStatus();
     }

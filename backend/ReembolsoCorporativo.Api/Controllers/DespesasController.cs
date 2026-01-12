@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using ReembolsoCorporativo.Api.Application.Services;
 using ReembolsoCorporativo.Api.Contracts.Dtos;
-using ReembolsoCorporativo.Api.Domain.Entities;
 
 namespace ReembolsoCorporativo.Api.Controllers;
 
@@ -8,7 +8,17 @@ namespace ReembolsoCorporativo.Api.Controllers;
 [Route("api/despesas")]
 public class DespesasController : ControllerBase
 {
+    private readonly IDespesaService _service;
+
+    public DespesasController(IDespesaService service)
+    {
+        _service = service;
+    }
+
     [HttpPost]
+    [ProducesResponseType(typeof(DespesaResponseDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
     public IActionResult Criar([FromBody] CreateDespesaRequestDto request)
     {
         if (request.Data.Date > DateTime.Today)
@@ -16,21 +26,14 @@ public class DespesasController : ControllerBase
             return BadRequest("Não é permitido cadastrar despesas com data futura.");
         }
 
-        var despesa = new Despesa(
-            request.Tipo,
-            request.Valor,
-            request.Data
-        );
-
-        var response = new DespesaResponseDto
+        try
         {
-            Id = despesa.Id,
-            Tipo = despesa.Tipo,
-            Valor = despesa.Valor,
-            Data = despesa.Data,
-            Status = despesa.Status
-        };
-
-        return Created(string.Empty, response);
+            var response = _service.Criar(request);
+            return Created(string.Empty, response);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Conflict(ex.Message);
+        }
     }
 }

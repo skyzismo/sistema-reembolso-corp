@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aadc51c618f1453a103f007083a53933079959ec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2fbf39b530a62d4407e867acf90e0cbbdaa396a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
