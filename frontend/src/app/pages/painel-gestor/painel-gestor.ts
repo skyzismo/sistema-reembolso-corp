@@ -28,4 +28,16 @@ export class PainelGestorComponent {
   statusLabel(status: number) {
     return StatusDespesa[status];
   }
+
+  statusTexto(status: number): string {
+  switch (status) {
+    case 1:
+      return 'Aprovada automaticamente';
+    case 2:
+      return 'Requer aprovação manual';
+    default:
+      return 'Status desconhecido';
+  }
+}
+
 }
