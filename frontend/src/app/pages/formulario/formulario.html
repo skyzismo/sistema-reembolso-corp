@@ -1,0 +1,23 @@
+<h2>Cadastro de Despesa</h2>
+
+<form #formDespesa="ngForm">
+
+  <label>Tipo</label>
+  <select [(ngModel)]="novaDespesa.tipo" name="tipo">
+    <option [ngValue]="1">Alimentação</option>
+    <option [ngValue]="2">Transporte</option>
+    <option [ngValue]="3">Hospedagem</option>
+    <option [ngValue]="4">Outros</option>
+  </select>
+
+  <label>Valor</label>
+  <input type="number" [(ngModel)]="novaDespesa.valor" name="valor" />
+
+  <label>Data</label>
+  <input type="date" [(ngModel)]="novaDespesa.data" name="data" />
+
+  <br /><br />
+  <button type="button" (click)="salvar(formDespesa)">Salvar</button>
+
+</form>
+

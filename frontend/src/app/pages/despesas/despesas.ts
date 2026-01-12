@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DespesaService, Despesa } from '../../services/despesa';
+import { DespesaService } from '../../services/despesa';
+import { Despesa, TipoDespesa, StatusDespesa } from '../../models/despesa.model';
 
 @Component({
   selector: 'app-despesas',
@@ -14,10 +15,13 @@ export class DespesasComponent implements OnInit {
   despesas: Despesa[] = [];
 
   novaDespesa: Despesa = {
-    tipo: 1,
+    tipo: TipoDespesa.Alimentacao,
     valor: 0,
     data: ''
   };
+
+  tipos = TipoDespesa;
+  status = StatusDespesa;
 
   constructor(private service: DespesaService) {}
 
@@ -26,16 +30,26 @@ export class DespesasComponent implements OnInit {
   }
 
   carregar() {
-    this.service.listar().subscribe(res => this.despesas = res);
+    this.service.listar().subscribe(d => this.despesas = d);
   }
 
   salvar() {
     this.service.criar(this.novaDespesa).subscribe({
       next: () => {
         this.carregar();
-        this.novaDespesa = { tipo: 1, valor: 0, data: '' };
+        this.novaDespesa = { tipo: TipoDespesa.Alimentacao, valor: 0, data: '' };
       },
-      error: err => alert(err.error)
+      error: err => {
+        alert(err.error?.mensagem || err.error);
+      }
     });
+  }
+
+  tipoLabel(tipo: number): string {
+    return TipoDespesa[tipo];
+  }
+
+  statusLabel(status: number): string {
+    return StatusDespesa[status];
   }
 }

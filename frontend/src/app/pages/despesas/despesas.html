@@ -1,19 +1,40 @@
-<h2>Nova Despesa</h2>
+<h2>Cadastro de Despesa</h2>
 
-<input type="number" [(ngModel)]="novaDespesa.tipo" placeholder="Tipo" />
-<input type="number" [(ngModel)]="novaDespesa.valor" placeholder="Valor" />
+<label>Tipo</label>
+<select [(ngModel)]="novaDespesa.tipo">
+  <option [value]="1">Alimentação</option>
+  <option [value]="2">Transporte</option>
+  <option [value]="3">Hospedagem</option>
+  <option [value]="4">Outros</option>
+</select>
+
+<label>Valor</label>
+<input type="number" [(ngModel)]="novaDespesa.valor" />
+
+<label>Data</label>
 <input type="date" [(ngModel)]="novaDespesa.data" />
 
 <button (click)="salvar()">Salvar</button>
 
-<hr>
+<hr />
 
-<h2>Despesas</h2>
+<h2>Despesas Cadastradas</h2>
 
-<ul>
-  <li *ngFor="let d of despesas">
-    Tipo: {{ d.tipo }} |
-    Valor: {{ d.valor }} |
-    Status: {{ d.status }}
-  </li>
-</ul>
+<table border="1" width="100%">
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Valor</th>
+      <th>Data</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of despesas">
+      <td>{{ tipoLabel(d.tipo) }}</td>
+      <td>R$ {{ d.valor }}</td>
+      <td>{{ d.data | date }}</td>
+      <td>{{ statusLabel(d.status!) }}</td>
+    </tr>
+  </tbody>
+</table>
