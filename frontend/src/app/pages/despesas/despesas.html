@@ -1,0 +1,19 @@
+<h2>Nova Despesa</h2>
+
+<input type="number" [(ngModel)]="novaDespesa.tipo" placeholder="Tipo" />
+<input type="number" [(ngModel)]="novaDespesa.valor" placeholder="Valor" />
+<input type="date" [(ngModel)]="novaDespesa.data" />
+
+<button (click)="salvar()">Salvar</button>
+
+<hr>
+
+<h2>Despesas</h2>
+
+<ul>
+  <li *ngFor="let d of despesas">
+    Tipo: {{ d.tipo }} |
+    Valor: {{ d.valor }} |
+    Status: {{ d.status }}
+  </li>
+</ul>
