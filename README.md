@@ -30,3 +30,55 @@ O sistema aplica automaticamente políticas internas da empresa no momento do la
 ## 🎯 Objetivo do Projeto
 
 Demonstrar a capacidade de traduzir requisitos de negócio em uma aplicação funcional, com regras bem definidas, validações consistentes e separação clara de responsabilidades entre frontend e backend.
+
+## Como Executar o Projeto
+
+### Pré-requisitos
+
+Certifique-se de ter instalado:
+
+- .NET SDK 10
+- Node.js (versão LTS)
+- Angular CLI  
+  ```bash
+  npm install -g @angular/cli
+  ```
+#### Executando o Backend
+
+```bash
+cd backend/ReembolsoCorporativo.Api
+```
+
+```bash
+dotnet restore
+```
+
+```bash
+dotnet ef database update
+```
+
+```bash
+dotnet run
+```
+
+```bash
+http://localhost:5124
+```
+
+#### Executando o Frontend
+
+```bash
+cd frontend
+```
+
+```bash
+npm install
+```
+
+```bash
+ng serve
+```
+
+```bash
+http://localhost:4200
+```
