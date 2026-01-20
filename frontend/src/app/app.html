@@ -1,1 +1,7 @@
+<div style="display: flex; justify-content: flex-end; padding: 16px;">
+  <button (click)="themeService.toggleTheme()">
+    {{ themeService.isDarkMode() ? '☀️ Light' : '🌙 Dark' }}
+  </button>
+</div>
+
 <router-outlet></router-outlet>
