@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("cd558936-03d1-471b-9e21-a1cc0c9981b3")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c526f9f5f107d14a209d9110fca982595f02bfae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c71174b8ff7c9b67297d98464deccf910ea06165")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

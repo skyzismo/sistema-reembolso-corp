@@ -15,7 +15,7 @@ namespace ReembolsoCorporativo.Api.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.15");
 
             modelBuilder.Entity("ReembolsoCorporativo.Api.Domain.Entities.Despesa", b =>
                 {
@@ -41,6 +41,35 @@ namespace ReembolsoCorporativo.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Despesas");
+                });
+
+            modelBuilder.Entity("ReembolsoCorporativo.Api.Domain.Entities.Usuario", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Perfil")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SenhaHash")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

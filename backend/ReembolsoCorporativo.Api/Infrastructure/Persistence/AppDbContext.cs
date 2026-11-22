@@ -1,3 +1,4 @@
+
 using Microsoft.EntityFrameworkCore;
 using ReembolsoCorporativo.Api.Domain.Entities;
 
@@ -11,4 +12,15 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Despesa> Despesas => Set<Despesa>();
+
+    public DbSet<Usuario> Usuarios => Set<Usuario>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Usuario>()
+            .HasIndex(usuario => usuario.Email)
+            .IsUnique();
+    }
 }

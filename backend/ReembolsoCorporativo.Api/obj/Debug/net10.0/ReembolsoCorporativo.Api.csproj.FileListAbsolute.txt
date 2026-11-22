@@ -149,3 +149,12 @@
 /home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/obj/Debug/net10.0/ReembolsoCorporativo.Api.pdb
 /home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/obj/Debug/net10.0/ReembolsoCorporativo.Api.genruntimeconfig.cache
 /home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/obj/Debug/net10.0/ref/ReembolsoCorporativo.Api.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.Bcl.Cryptography.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.IdentityModel.Abstractions.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.IdentityModel.Logging.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/Microsoft.IdentityModel.Tokens.dll
+/home/gadelha/sistema-reembolso-corp/backend/ReembolsoCorporativo.Api/bin/Debug/net10.0/System.IdentityModel.Tokens.Jwt.dll

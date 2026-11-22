@@ -1,10 +1,12 @@
-# Análise de Casos de Uso  
+
+# Análise de Casos de Uso
 Sistema de Reembolso Corporativo
 
 ## Atores
 
 - **Funcionário**: responsável por cadastrar despesas corporativas.
-- **Gestor**: responsável por visualizar as despesas cadastradas.
+- **Gestor**: responsável por visualizar, aprovar, rejeitar e excluir despesas conforme as regras de negócio.
+- **Sistema**: responsável por executar as validações e aplicar automaticamente as regras de classificação das despesas.
 
 ---
 
@@ -103,6 +105,116 @@ Permite que o gestor identifique o status de aprovação de cada despesa cadastr
 2. O sistema exibe o status associado a cada despesa:
    - Aprovada Automaticamente
    - Requer Aprovação Manual
+   - Aprovada Manualmente
+   - Rejeitada
 
 ### Pós-condições
 - Nenhuma alteração é realizada no sistema.
+
+---
+
+## UC05 – Aprovar Despesa
+
+### Ator Principal
+Gestor
+
+### Descrição
+Permite que o gestor aprove manualmente uma despesa que esteja aguardando aprovação.
+
+### Pré-condições
+- A despesa está cadastrada no sistema.
+- A despesa possui o status **Requer Aprovação Manual**.
+- O usuário possui perfil de gestor.
+
+### Fluxo Principal
+1. O gestor acessa o painel de despesas.
+2. O sistema exibe as despesas cadastradas.
+3. O gestor seleciona uma despesa pendente de aprovação.
+4. O gestor solicita a aprovação da despesa.
+5. O sistema verifica se a despesa existe.
+6. O sistema verifica se a despesa está aguardando aprovação manual.
+7. O sistema atualiza o status para **Aprovada Manualmente**.
+8. O sistema salva a alteração.
+9. O sistema informa que a despesa foi aprovada com sucesso.
+
+### Fluxos Alternativos
+- **FA01 – Despesa não encontrada**
+  - No passo 5, caso a despesa não exista, o sistema informa que o registro não foi encontrado.
+- **FA02 – Status incompatível**
+  - No passo 6, caso a despesa não esteja aguardando aprovação manual, o sistema impede a operação e informa que a despesa não pode ser aprovada.
+
+### Pós-condições
+- A despesa permanece cadastrada com o status **Aprovada Manualmente**.
+
+---
+
+## UC06 – Rejeitar Despesa
+
+### Ator Principal
+Gestor
+
+### Descrição
+Permite que o gestor rejeite uma despesa que esteja aguardando aprovação manual.
+
+### Pré-condições
+- A despesa está cadastrada no sistema.
+- A despesa possui o status **Requer Aprovação Manual**.
+- O usuário possui perfil de gestor.
+
+### Fluxo Principal
+1. O gestor acessa o painel de despesas.
+2. O sistema exibe as despesas cadastradas.
+3. O gestor seleciona uma despesa pendente de aprovação.
+4. O gestor solicita a rejeição da despesa.
+5. O sistema verifica se a despesa existe.
+6. O sistema verifica se a despesa está aguardando aprovação manual.
+7. O sistema atualiza o status para **Rejeitada**.
+8. O sistema salva a alteração.
+9. O sistema informa que a despesa foi rejeitada com sucesso.
+
+### Fluxos Alternativos
+- **FA01 – Despesa não encontrada**
+  - No passo 5, caso a despesa não exista, o sistema informa que o registro não foi encontrado.
+- **FA02 – Status incompatível**
+  - No passo 6, caso a despesa não esteja aguardando aprovação manual, o sistema impede a operação e informa que a despesa não pode ser rejeitada.
+
+### Pós-condições
+- A despesa permanece cadastrada com o status **Rejeitada**.
+
+---
+
+## UC07 – Excluir Despesa Inferior a R$ 50,00
+
+### Ator Principal
+Gestor
+
+### Descrição
+Permite que o gestor exclua despesas cujo valor seja inferior a R$ 50,00.
+
+### Pré-condições
+- A despesa está cadastrada no sistema.
+- O valor da despesa é inferior a R$ 50,00.
+- O usuário possui perfil de gestor.
+
+### Fluxo Principal
+1. O gestor acessa o painel de despesas.
+2. O sistema exibe as despesas cadastradas.
+3. O gestor seleciona uma despesa com valor inferior a R$ 50,00.
+4. O gestor solicita a exclusão da despesa.
+5. O sistema verifica se a despesa existe.
+6. O sistema verifica se o valor da despesa é inferior a R$ 50,00.
+7. O sistema exclui a despesa do banco de dados.
+8. O sistema informa que a despesa foi excluída com sucesso.
+
+### Fluxos Alternativos
+- **FA01 – Despesa não encontrada**
+  - No passo 5, caso a despesa não exista, o sistema informa que o registro não foi encontrado.
+- **FA02 – Valor incompatível**
+  - No passo 6, caso o valor da despesa seja igual ou superior a R$ 50,00, o sistema impede a exclusão e informa que a operação não é permitida.
+- **FA03 – Usuário sem permissão**
+  - Caso o usuário não possua perfil de gestor, o sistema impede a operação e informa que a exclusão é permitida somente para gestores.
+
+### Pós-condições
+- A despesa é removida do banco de dados.
+- Nenhuma outra despesa é alterada.
+
