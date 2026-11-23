@@ -38,7 +38,7 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddScoped<IDespesaService, DespesaService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<FuncionarioSeedService>();
+builder.Services.AddScoped<UsuarioService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(
@@ -48,9 +48,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAngular",
-        policy => policy
-            .AllowAnyOrigin()
+    options.AddPolicy("AllowAngular", policy =>
+        policy
+            .WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyMethod()
     );
@@ -103,10 +103,7 @@ using (var scope = app.Services.CreateScope())
 
     await adminSeed.SeedAsync();
 
-    var funcionarioSeed = scope.ServiceProvider
-        .GetRequiredService<FuncionarioSeedService>();
-
-    await funcionarioSeed.SeedAsync();
+    
 }
 
 if (app.Environment.IsDevelopment())

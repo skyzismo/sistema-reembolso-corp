@@ -50,6 +50,14 @@ public class AuthService : IAuthService
         if (resultado == PasswordVerificationResult.Failed)
             return null;
 
+        if (resultado == PasswordVerificationResult.SuccessRehashNeeded)
+        {
+            usuario.DefinirSenhaHash(
+                _passwordHasher.HashPassword(usuario, request.Senha));
+        
+            await _context.SaveChangesAsync();
+        }
+
         var jwtKey = _configuration["Jwt:Key"]
             ?? throw new InvalidOperationException("Chave JWT não configurada.");
 

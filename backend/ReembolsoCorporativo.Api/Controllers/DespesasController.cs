@@ -25,7 +25,12 @@ public class DespesasController : ControllerBase
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     public IActionResult Criar([FromBody] CreateDespesaRequestDto request)
     {
-        if (request.Data.Date > DateTime.Today)
+        if (!request.Data.HasValue)
+        {
+            return BadRequest("A data da despesa é obrigatória.");
+        }
+        
+        if (request.Data.Value.Date > DateTime.Today)
         {
             return BadRequest(
                 "Não é permitido cadastrar despesas com data futura.");

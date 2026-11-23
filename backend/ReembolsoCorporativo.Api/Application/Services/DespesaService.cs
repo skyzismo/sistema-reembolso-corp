@@ -21,7 +21,7 @@ public class DespesaService : IDespesaService
         var despesa = new Despesa(
             request.Tipo,
             request.Valor,
-            request.Data
+            request.Data!.Value
         );
 
         _context.Despesas.Add(despesa);
