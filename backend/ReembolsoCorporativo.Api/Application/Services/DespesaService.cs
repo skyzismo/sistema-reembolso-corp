@@ -1,3 +1,4 @@
+
 using ReembolsoCorporativo.Api.Contracts.Dtos;
 using ReembolsoCorporativo.Api.Domain.Entities;
 using ReembolsoCorporativo.Api.Infrastructure.Persistence;
@@ -26,14 +27,7 @@ public class DespesaService : IDespesaService
         _context.Despesas.Add(despesa);
         _context.SaveChanges();
 
-        return new DespesaResponseDto
-        {
-            Id = despesa.Id,
-            Tipo = despesa.Tipo,
-            Valor = despesa.Valor,
-            Data = despesa.Data,
-            Status = despesa.Status
-        };
+        return ConverterParaDto(despesa);
     }
 
     public IEnumerable<DespesaResponseDto> Listar()
@@ -49,6 +43,71 @@ public class DespesaService : IDespesaService
                 Status = d.Status
             })
             .ToList();
+    }
+
+    public bool Aprovar(Guid id)
+    {
+        var despesa = BuscarDespesa(id);
+
+        if (despesa is null)
+            return false;
+
+        despesa.Aprovar();
+
+        _context.SaveChanges();
+
+        return true;
+    }
+
+    public bool Rejeitar(Guid id)
+    {
+        var despesa = BuscarDespesa(id);
+
+        if (despesa is null)
+            return false;
+
+        despesa.Rejeitar();
+
+        _context.SaveChanges();
+
+        return true;
+    }
+
+    public bool Excluir(Guid id)
+    {
+        var despesa = BuscarDespesa(id);
+
+        if (despesa is null)
+            return false;
+
+        if (despesa.Valor >= 50)
+        {
+            throw new InvalidOperationException(
+                "Somente despesas com valor inferior a R$ 50,00 podem ser excluídas.");
+        }
+
+        _context.Despesas.Remove(despesa);
+        _context.SaveChanges();
+
+        return true;
+    }
+
+    private Despesa? BuscarDespesa(Guid id)
+    {
+        return _context.Despesas
+            .FirstOrDefault(d => d.Id == id);
+    }
+
+    private static DespesaResponseDto ConverterParaDto(Despesa despesa)
+    {
+        return new DespesaResponseDto
+        {
+            Id = despesa.Id,
+            Tipo = despesa.Tipo,
+            Valor = despesa.Valor,
+            Data = despesa.Data,
+            Status = despesa.Status
+        };
     }
 
     private void ValidarDuplicidade(CreateDespesaRequestDto request)
@@ -68,6 +127,4 @@ public class DespesaService : IDespesaService
             );
         }
     }
-
-    
 }

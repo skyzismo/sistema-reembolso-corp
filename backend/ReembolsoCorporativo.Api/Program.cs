@@ -7,16 +7,38 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using Microsoft.OpenApi;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Description = "Autenticação JWT utilizando Bearer.",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
+    });
+
+    options.AddSecurityRequirement(document =>
+        new OpenApiSecurityRequirement
+        {
+            [new OpenApiSecuritySchemeReference("Bearer", document)] = []
+        });
+});
+
 
 builder.Services.AddScoped<IDespesaService, DespesaService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<FuncionarioSeedService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(
@@ -80,6 +102,11 @@ using (var scope = app.Services.CreateScope())
         .GetRequiredService<AdminSeedService>();
 
     await adminSeed.SeedAsync();
+
+    var funcionarioSeed = scope.ServiceProvider
+        .GetRequiredService<FuncionarioSeedService>();
+
+    await funcionarioSeed.SeedAsync();
 }
 
 if (app.Environment.IsDevelopment())

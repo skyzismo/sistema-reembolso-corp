@@ -34,4 +34,27 @@ public class Despesa
 
         Status = StatusDespesa.AprovadaAutomaticamente;
     }
+
+    public void Aprovar()
+    {
+        ValidarAprovacaoManual();
+
+        Status = StatusDespesa.AprovadaManualmente;
+    }
+
+    public void Rejeitar()
+    {
+        ValidarAprovacaoManual();
+
+        Status = StatusDespesa.Rejeitada;
+    }
+
+    private void ValidarAprovacaoManual()
+    {
+        if (Status != StatusDespesa.RequerAprovacaoManual)
+        {
+            throw new InvalidOperationException(
+                "Apenas despesas que requerem aprovação manual podem ser aprovadas ou rejeitadas.");
+        }
+    }
 }
