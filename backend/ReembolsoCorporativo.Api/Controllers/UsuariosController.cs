@@ -48,4 +48,15 @@ public class UsuariosController : ControllerBase
             });
         }
     }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(List<UsuarioResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<IActionResult> Listar()
+    {
+        var usuarios = await _service.ListarAsync();
+    
+        return Ok(usuarios);
+    }
 }

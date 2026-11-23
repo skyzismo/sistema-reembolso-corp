@@ -8,7 +8,16 @@
         <option [ngValue]="1">Alimentação</option><option [ngValue]="2">Transporte</option><option [ngValue]="3">Hospedagem</option><option [ngValue]="4">Outros</option>
       </select>
       <label for="valor">Valor (R$)</label><input id="valor" name="valor" type="number" min="0.01" step="0.01" [(ngModel)]="valor" required>
-      <label for="data">Data da despesa</label><input id="data" name="data" type="date" [max]="hoje" [(ngModel)]="data" required>
+      <label for="data">Data da despesa</label>
+      <input
+        id="data"
+        name="data"
+        type="date"
+        [(ngModel)]="data"
+        [max]="hoje"
+        required
+        (click)="abrirCalendario($event)"
+      />
       <p class="success" *ngIf="sucesso">{{ sucesso }}</p><p class="error" *ngIf="erro">{{ erro }}</p>
       <button class="primary" type="submit" [disabled]="carregando">{{ carregando ? 'Salvando...' : 'Cadastrar despesa' }}</button>
     </form>

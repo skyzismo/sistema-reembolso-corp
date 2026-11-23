@@ -171,4 +171,73 @@
       </button>
     </form>
   </section>
+
+
+<!-- LISTAGEM DE USUÁRIOS -->
+<section class="panel">
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">GESTÃO DE ACESSO</p>
+      <h2>Usuários cadastrados</h2>
+      <p class="muted">
+        Consulte os usuários que possuem acesso ao sistema.
+      </p>
+    </div>
+
+    <button
+      class="secondary"
+      (click)="carregarUsuarios()"
+      [disabled]="carregandoUsuarios">
+      {{ carregandoUsuarios ? 'Atualizando...' : 'Atualizar usuários' }}
+    </button>
+  </div>
+
+  <p class="error" *ngIf="erroUsuarios">
+    {{ erroUsuarios }}
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Perfil</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>
+            <span
+              class="status"
+              [ngClass]="{
+                'status-3': perfilLabel(usuario.perfil) === 'Gestor',
+                'status-1': perfilLabel(usuario.perfil) === 'Funcionário'
+              }">
+              {{ perfilLabel(usuario.perfil) }}
+            </span>
+          </td>
+        </tr>
+
+        <tr *ngIf="!carregandoUsuarios && usuarios.length === 0">
+          <td colspan="3" class="empty">
+            Nenhum usuário cadastrado.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="muted" *ngIf="carregandoUsuarios">
+    Carregando usuários...
+  </p>
+
+  <p class="muted">
+    Total de usuários: {{ usuarios.length }}
+  </p>
+</section>
+
 </main>

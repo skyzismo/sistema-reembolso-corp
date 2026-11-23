@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ReembolsoCorporativo.Api.Contracts.Dtos;
@@ -53,5 +52,20 @@ public class UsuarioService
             Email = usuario.Email,
             Perfil = usuario.Perfil
         };
+    }
+
+    public async Task<List<UsuarioResponseDto>> ListarAsync()
+    {
+        return await _context.Usuarios
+            .AsNoTracking()
+            .OrderBy(u => u.Nome)
+            .Select(u => new UsuarioResponseDto
+            {
+                Id = u.Id,
+                Nome = u.Nome,
+                Email = u.Email,
+                Perfil = u.Perfil
+            })
+            .ToListAsync();
     }
 }

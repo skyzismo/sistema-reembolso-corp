@@ -18,3 +18,13 @@ label{display:block;font-weight:650;font-size:13px;margin:16px 0 7px;color:var(-
   flex-wrap: wrap;
   min-height: 32px;
 }
+
+input[type="date"] {
+  cursor: pointer;
+  min-height: 44px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 4px;
+}

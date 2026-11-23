@@ -13,3 +13,10 @@ export interface CriarUsuarioRequest {
   senha: string;
   perfil: number;
 }
+
+export interface Usuario {
+  id: string;
+  nome: string;
+  email: string;
+  perfil: 'Funcionario' | 'Gestor' | number;
+}

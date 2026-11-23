@@ -21,4 +21,12 @@ export class FormularioComponent {
       error: err => { this.carregando = false; this.erro = typeof err.error === 'string' ? err.error : (err.error?.mensagem ?? 'Não foi possível cadastrar a despesa.'); }
     });
   }
+
+  abrirCalendario(event: Event): void {
+  const campo = event.target as HTMLInputElement;
+
+  if (typeof campo.showPicker === 'function') {
+    campo.showPicker();
+  }
+}
 }

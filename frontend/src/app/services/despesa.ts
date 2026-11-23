@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CriarDespesaRequest, Despesa } from '../models/despesa.model';
-import { CriarUsuarioRequest } from '../models/auth.model';
+import { CriarUsuarioRequest, Usuario } from '../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class DespesaService {
@@ -24,5 +24,8 @@ export class DespesaService {
   }
   criarUsuario(usuario: CriarUsuarioRequest): Observable<unknown> {
     return this.http.post(this.usuariosUrl, usuario);
+  }
+  listarUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.usuariosUrl);
   }
 }

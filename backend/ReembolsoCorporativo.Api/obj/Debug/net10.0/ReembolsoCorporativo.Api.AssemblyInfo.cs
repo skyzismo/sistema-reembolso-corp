@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f11eefadcf5159520ef44d84d1e109e60bff2ae9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba028b18d6f56983d7d093bbef9835247ad21d5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReembolsoCorporativo.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
