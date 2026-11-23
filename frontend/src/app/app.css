@@ -1,0 +1,4 @@
+.topbar{height:68px;padding:0 max(24px,calc((100% - 1120px)/2));display:flex;align-items:center;justify-content:space-between;background:var(--card-bg);border-bottom:1px solid var(--border-color)}
+.brand{font-size:20px;font-weight:800;color:var(--title-color);text-decoration:none;letter-spacing:-.5px}.brand span{color:var(--primary-color)}
+.topbar nav{display:flex;align-items:center;gap:14px}.user-greeting{font-size:13px;color:var(--muted-color)}
+.icon-button,.logout-button{padding:9px 12px;border:1px solid var(--border-color);background:transparent;color:var(--text-color);border-radius:8px}.logout-button{color:var(--danger-color)}

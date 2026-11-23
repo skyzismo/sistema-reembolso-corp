@@ -1,0 +1,18 @@
+<main class="auth-shell">
+  <section class="auth-card">
+    <div class="brand-mark">RC</div>
+    <p class="eyebrow">GESTÃO CORPORATIVA</p>
+    <h1>Bem-vindo de volta</h1>
+    <p class="muted">Entre para acessar o sistema de reembolso.</p>
+    <form (ngSubmit)="entrar()" #form="ngForm">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" name="email" [(ngModel)]="email" required email autocomplete="username">
+      <label for="senha">Senha</label>
+      <input id="senha" type="password" name="senha" [(ngModel)]="senha" required autocomplete="current-password">
+      <p class="error" *ngIf="erro">{{ erro }}</p>
+      <button class="primary full" type="submit" [disabled]="form.invalid || carregando">
+        {{ carregando ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </form>
+  </section>
+</main>

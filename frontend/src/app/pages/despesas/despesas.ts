@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DespesaService } from '../../services/despesa';
-import { Despesa, TipoDespesa, StatusDespesa } from '../../models/despesa.model';
+import {
+  Despesa,
+  CriarDespesaRequest,
+  TipoDespesa,
+  StatusDespesa
+} from '../../models/despesa.model';
 
 @Component({
   selector: 'app-despesas',
@@ -14,11 +19,11 @@ export class DespesasComponent implements OnInit {
 
   despesas: Despesa[] = [];
 
-  novaDespesa: Despesa = {
-    tipo: TipoDespesa.Alimentacao,
-    valor: 0,
-    data: ''
-  };
+  novaDespesa: CriarDespesaRequest = {
+  tipo: TipoDespesa.Alimentacao,
+  valor: 0,
+  data: ''
+};
 
   tipos = TipoDespesa;
   status = StatusDespesa;
@@ -37,7 +42,11 @@ export class DespesasComponent implements OnInit {
     this.service.criar(this.novaDespesa).subscribe({
       next: () => {
         this.carregar();
-        this.novaDespesa = { tipo: TipoDespesa.Alimentacao, valor: 0, data: '' };
+        this.novaDespesa = {
+          tipo: TipoDespesa.Alimentacao,
+          valor: 0,
+          data: ''
+        };
       },
       error: err => {
         alert(err.error?.mensagem || err.error);

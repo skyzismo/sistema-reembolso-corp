@@ -1,7 +1,8 @@
-<div style="display: flex; justify-content: flex-end; padding: 16px;">
-  <button (click)="themeService.toggleTheme()">
-    {{ themeService.isDarkMode() ? '☀️ Light' : '🌙 Dark' }}
-  </button>
-</div>
-
+<header class="topbar" *ngIf="auth.autenticado">
+  <a class="brand" routerLink="/">Reembolso<span>Corp</span></a>
+  <nav><span class="user-greeting">{{ auth.nome }} · {{ auth.perfil === 'Gestor' ? 'Gestor' : 'Funcionário' }}</span>
+    <button class="icon-button" (click)="themeService.toggleTheme()" aria-label="Alternar tema">{{ themeService.isDarkMode() ? '☀' : '◐' }}</button>
+    <button class="logout-button" (click)="sair()">Sair</button>
+  </nav>
+</header>
 <router-outlet></router-outlet>

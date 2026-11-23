@@ -1,30 +1,174 @@
-<div class="container">
-  <h2>Painel do Gestor</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Tipo</th>
-        <th>Valor</th>
-        <th>Data</th>
-        <th>Status</th>
-      </tr>
-    </thead>
+<main class="page">
+  <a class="back-link" routerLink="/">← Voltar ao início</a>
 
-    <tbody *ngIf="despesas$ | async as despesas">
-      <tr *ngFor="let d of despesas">
-        <td>{{ tipoLabel(d.tipo) }}</td>
-        <td>R$ {{ d.valor }}</td>
-        <td>{{ d.data | date:'dd/MM/yyyy' }}</td>
-        <td
-          [ngClass]="{
-            'status-aprovado': d.status === 1,
-            'status-manual': d.status === 2
-          }"
-        >
-          {{ statusTexto(d.status!) }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="page-heading">
+    <div>
+      <p class="eyebrow">ADMINISTRAÇÃO</p>
+      <h1>Painel do gestor</h1>
+      <p class="muted">
+        Acompanhe despesas e gerencie os usuários do sistema.
+      </p>
+    </div>
+
+    <button class="secondary" (click)="carregar()">
+      Atualizar lista
+    </button>
+  </div>
+
+  <!-- DESPESAS -->
+  <section class="panel">
+    <h2>Despesas cadastradas</h2>
+
+    <p class="error" *ngIf="erro">{{ erro }}</p>
+    <p class="success" *ngIf="sucesso">{{ sucesso }}</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let d of despesas">
+            <td>{{ tipoLabel(d.tipo) }}</td>
+
+            <td>{{ d.valor | currency:'BRL' }}</td>
+
+            <td>{{ d.data | date:'dd/MM/yyyy' }}</td>
+
+            <td>
+              <span [class]="classeStatus(d.status)">
+                {{ statusLabel(d.status) }}
+              </span>
+            </td>
+
+            <td>
+              <div class="actions">
+                <ng-container *ngIf="pendente(d)">
+                  <button
+                    class="small success-button"
+                    (click)="executar('aprovar', d)">
+                    Aprovar
+                  </button>
+
+                  <button
+                    class="small danger-button"
+                    (click)="executar('rejeitar', d)">
+                    Rejeitar
+                  </button>
+                </ng-container>
+
+                <button
+                  class="small danger-button"
+                  *ngIf="d.valor < 50"
+                  (click)="executar('excluir', d)">
+                  Excluir
+                </button>
+
+                <span
+                  class="muted"
+                  *ngIf="!pendente(d) && d.valor >= 50">
+                  —
+                </span>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="!carregando && despesas.length === 0">
+            <td colspan="5" class="empty">
+              Nenhuma despesa cadastrada.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted" *ngIf="carregando">
+      Carregando despesas...
+    </p>
+  </section>
+
+  <!-- CADASTRO DE USUÁRIOS -->
+  <section class="panel user-panel">
+    <p class="eyebrow">GESTÃO DE ACESSO</p>
+
+    <h2>Cadastrar usuário</h2>
+
+    <p class="muted">
+      Crie uma conta de Funcionário ou Gestor.
+      Usuários não são excluídos para preservar o histórico.
+    </p>
+
+    <form
+      #usuarioForm="ngForm"
+      (ngSubmit)="cadastrarUsuario()"
+      class="user-form">
+
+      <div>
+        <label for="nome">Nome</label>
+        <input
+          id="nome"
+          name="nome"
+          [(ngModel)]="nome"
+          required
+          minlength="2"
+          maxlength="100">
+      </div>
+
+      <div>
+        <label for="email">E-mail</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          [(ngModel)]="email"
+          required
+          email>
+      </div>
+
+      <div>
+        <label for="senha">Senha</label>
+        <input
+          id="senha"
+          name="senha"
+          type="password"
+          [(ngModel)]="senha"
+          required
+          minlength="8">
+      </div>
+
+      <div>
+        <label for="perfil">Perfil</label>
+        <select
+          id="perfil"
+          name="perfil"
+          [(ngModel)]="perfil">
+          <option [ngValue]="1">Funcionário</option>
+          <option [ngValue]="2">Gestor</option>
+        </select>
+      </div>
+
+      <p class="success" *ngIf="mensagemUsuario">
+        {{ mensagemUsuario }}
+      </p>
+
+      <p class="error" *ngIf="erroUsuario">
+        {{ erroUsuario }}
+      </p>
+
+      <button
+        class="primary"
+        type="submit"
+        [disabled]="usuarioForm.invalid">
+        Cadastrar usuário
+      </button>
+    </form>
+  </section>
+</main>

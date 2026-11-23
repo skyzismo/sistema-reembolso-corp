@@ -1,19 +1,19 @@
-export enum TipoDespesa {
-  Alimentacao = 1,
-  Transporte = 2,
-  Hospedagem = 3,
-  Outros = 4
-}
-
+export enum TipoDespesa { Alimentacao = 1, Transporte = 2, Hospedagem = 3, Outros = 4 }
 export enum StatusDespesa {
   AprovadaAutomaticamente = 1,
-  RequerAprovacaoManual = 2
+  RequerAprovacaoManual = 2,
+  AprovadaManualmente = 3,
+  Rejeitada = 4
 }
-
 export interface Despesa {
-  id?: string;
+  id: string;
   tipo: TipoDespesa;
   valor: number;
   data: string;
-  status?: StatusDespesa;
+  status: StatusDespesa;
+}
+export interface CriarDespesaRequest {
+  tipo: TipoDespesa;
+  valor: number;
+  data: string;
 }

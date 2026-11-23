@@ -1,15 +1,9 @@
-<div class="container">
-  <h1>Sistema de Reembolso Corporativo</h1>
-
-  <div class="cards">
-    <div class="card" routerLink="/formulario">
-      <h2>Formulário</h2>
-      <p>Cadastrar nova despesa</p>
-    </div>
-
-    <div class="card" routerLink="/painel-gestor">
-      <h2>Painel do Gestor</h2>
-      <p>Visualizar despesas cadastradas</p>
-    </div>
-  </div>
-</div>
+<main class="page">
+  <section class="welcome">
+    <div><p class="eyebrow">ÁREA DE TRABALHO</p><h1>Olá, {{ auth.nome }}!</h1><p class="muted">O que você gostaria de fazer hoje?</p></div>
+  </section>
+  <section class="cards">
+    <a class="feature-card" routerLink="/formulario"><span class="feature-icon">＋</span><h2>Nova despesa</h2><p>Registre uma despesa para solicitar reembolso.</p><span class="card-link">Acessar formulário →</span></a>
+    <a class="feature-card" routerLink="/painel-gestor" *ngIf="auth.gestor"><span class="feature-icon">▤</span><h2>Painel do gestor</h2><p>Gerencie solicitações, aprove ou rejeite despesas.</p><span class="card-link">Abrir painel →</span></a>
+  </section>
+</main>

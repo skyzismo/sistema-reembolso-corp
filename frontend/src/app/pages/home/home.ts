@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './home.html'
-})
-export class HomeComponent {}
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth';
+@Component({ selector: 'app-home', standalone: true, imports: [CommonModule, RouterModule], templateUrl: './home.html' })
+export class HomeComponent { constructor(public auth: AuthService) {} }
