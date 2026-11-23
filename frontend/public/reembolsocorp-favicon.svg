@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="ReembolsoCorp">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#527BFF"/>
+      <stop offset="1" stop-color="#315FEA"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#111D30"/>
+      <stop offset="1" stop-color="#0C1729"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="512" height="512" rx="92" fill="url(#navy)"/>
+  <path d="M132 232 L151 113 L174 94 L203 113 L232 94 L261 113 L290 94 L319 113 L348 94 L367 111 L365 231"
+        fill="none" stroke="#F7F9FF" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M187 145 H278 M183 178 H255 M180 211 H241"
+        fill="none" stroke="#E8EDF7" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="359" cy="159" r="43" fill="url(#blue)"/>
+  <path d="M339 159 L354 174 L381 143" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M93 278 C55 311 53 361 90 391 C145 436 275 440 365 402"
+        fill="none" stroke="url(#blue)" stroke-width="13" stroke-linecap="round"/>
+  <path d="M144 236 H207 C247 236 270 257 270 292 C270 319 254 339 229 347 L270 405 H214 L180 355 H160 L153 405 H103 Z
+           M165 276 L159 318 H197 C211 318 220 310 220 296 C220 283 212 276 197 276 Z"
+        fill="#FFFFFF" fill-rule="evenodd"/>
+  <path d="M390 268 C370 245 343 235 316 235 C266 235 232 270 232 321 C232 372 266 407 316 407 C344 407 370 396 391 373 L359 341 C348 354 334 361 319 361 C296 361 281 345 281 321 C281 297 296 281 319 281 C334 281 347 288 358 300 Z"
+        fill="url(#blue)"/>
+</svg>
